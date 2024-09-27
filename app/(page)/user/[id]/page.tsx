@@ -16,7 +16,13 @@ const UserDetail = ({ params }: { params: { id: number | undefined } }) => {
     skip: !id, // This prevents the request if userId is undefined
   });
 
-  if (!id) return <div>No user selected.</div>;
+  if (!id)
+    return (
+      <div className='w-full h-full flex justify-center items-center'>
+        <h3 className='text-3xl font-bold'>No user selected.</h3>
+      </div>
+    );
+
   if (isLoading)
     return (
       <div className='h-full w-full flex justify-center items-center'>
