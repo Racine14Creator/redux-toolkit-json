@@ -19,7 +19,7 @@ const UserDetail = ({ params }: { params: { id: number | undefined } }) => {
   if (!id) return <div>No user selected.</div>;
   if (isLoading)
     return (
-      <div className='h-screen w-screen flex justify-center items-center'>
+      <div className='h-full w-full flex justify-center items-center'>
         <span className='relative flex h-3 w-3'>
           <span className='animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75' />
           <span className='relative inline-flex rounded-full h-3 w-3 bg-sky-500' />
@@ -29,7 +29,7 @@ const UserDetail = ({ params }: { params: { id: number | undefined } }) => {
   if (error) return <div>Error loading user.</div>;
 
   return (
-    <div className='w-full md:w-[1000px] mx-auto'>
+    <div className='w-full md:max-w-[1000px] mx-auto'>
       <Header backTitle='Back to users' href='/' title='User' />
       <div className='bg-white p-10 rounded-3xl mx-auto my-5 text-black'>
         <h2 className='font-bold text-4xl'>{user?.username}</h2>
