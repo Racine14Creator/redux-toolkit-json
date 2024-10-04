@@ -1,8 +1,10 @@
 "use client";
+import { redirect } from "next/navigation";
 // import { RootState } from "@/redux/rootReducer";
 // import { useDispatch, useSelector } from "react-redux";
 // import { decrement, increment } from "@/redux/slice/counterSlice";
-import User from "./components/User";
+
+import { useSession } from "next-auth/react";
 
 export default function Home() {
   // const counter = useSelector((state: RootState) => state.counter);
@@ -14,23 +16,12 @@ export default function Home() {
   // const handlerDecrement = () => {
   //   dispatch(decrement());
   // };
-  return (
-    <div className='container'>
-      {/* <h3>Redux</h3>
-      <p>{counter}</p>
-      <button
-        className='bg-white text-black px-4 py-1 cursor-pointer'
-        onClick={handlerIncrement}
-      >
-        +
-      </button>
-      <button
-        className='bg-white text-black px-4 py-1 cursor-pointer'
-        onClick={handlerDecrement}
-      >
-        -
-      </button> */}
-      <User />
-    </div>
-  );
+
+  const { data: session } = useSession();
+
+  if (!session) {
+    return redirect("/login");
+  } else {
+    redirect("/home");
+  }
 }
